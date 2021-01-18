@@ -1,0 +1,39 @@
+CREATE DATABASE clinica;
+USE clinica;
+--TABLA USUARIO--
+CREATE TABLE usuario(
+    id INT(11) NOT NULL,
+    nombreUsuario VARCHAR(100),
+    password VARCHAR(150)
+);
+ALTER TABLE usuario
+ADD PRIMARY KEY (id);
+ALTER TABLE usuario
+MODIFY id INT(11) NOT NULL AUTO_INCREMENT,
+    AUTO_INCREMENT = 100;
+DESCRIBE usuario;
+--TABLA DUENO--
+CREATE TABLE dueno(
+    rut VARCHAR(30) NOT NULL,
+    nombre VARCHAR(100),
+    apellido VARCHAR(100),
+    direccion VARCHAR(100),
+    correo VARCHAR(100)
+);
+ALTER TABLE dueno
+ADD PRIMARY KEY (rut);
+DESCRIBE dueno;
+--TABLA MASCOTA--
+CREATE TABLE mascota(
+    idMascota INT(11) NOT NULL,
+    rutDueno VARCHAR(30),
+    nombreMascota VARCHAR(100),
+    creado TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT fk_rutDueno FOREIGN KEY (rutDueno) REFERENCES dueno(rut)
+);
+ALTER TABLE mascota
+ADD PRIMARY KEY (idMascota);
+ALTER TABLE mascota
+MODIFY idMascota INT(11) NOT NULL AUTO_INCREMENT,
+    AUTO_INCREMENT = 1000;
+    DESCRIBE mascota;
